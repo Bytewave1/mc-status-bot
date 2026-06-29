@@ -1,0 +1,8 @@
+{
+    "token": "YOUR_BOT_TOKEN",
+    "server_ip": "play.example.com",
+    "server_port": 25565,
+    "update_interval": 60,
+    "embed_color": "2f3136",
+    "status_channel_id": null
+}
