@@ -14,7 +14,7 @@ A Discord bot that displays the live status of a Minecraft Java server.
 
 1. Clone the repo
 ```bash
-git clone https://github.com/yourusername/mc-status-bot.git
+git clone https://github.com/Bytewave1/mc-status-bot.git
 cd mc-status-bot
 ```
 
