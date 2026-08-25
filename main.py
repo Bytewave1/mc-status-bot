@@ -2,7 +2,9 @@ import discord
 from discord.ext import commands, tasks
 from mcstatus import JavaServer
 import json
-import os
+import logging
+
+logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 
 with open("config.json", "r") as f:
     config = json.load(f)
@@ -30,7 +32,8 @@ def query_server():
             "version": status.version.name,
             "latency": round(status.latency, 1)
         }
-    except Exception:
+    except Exception as e:
+        logging.error(f"Failed to query server: {e}")
         return {"online": False}
 
 
@@ -92,7 +95,7 @@ async def update_status():
 
 @bot.event
 async def on_ready():
-    print(f"Logged in as {bot.user}")
+    logging.info(f"Logged in as {bot.user}")
     if STATUS_CHANNEL_ID:
         update_status.start()
 
