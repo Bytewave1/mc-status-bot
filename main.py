@@ -9,6 +9,15 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(me
 with open("config.json", "r") as f:
     config = json.load(f)
 
+required_keys = ["token", "server_ip"]
+for key in required_keys:
+    if key not in config:
+        logging.error(f"Missing required config key: {key}")
+        exit(1)
+if config.get("update_interval", 0) <= 0:
+    logging.error("update_interval must be positive")
+    exit(1)
+
 TOKEN = config["token"]
 SERVER_IP = config["server_ip"]
 SERVER_PORT = config["server_port"]
