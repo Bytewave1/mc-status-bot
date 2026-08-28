@@ -25,7 +25,9 @@ UPDATE_INTERVAL = config["update_interval"]
 EMBED_COLOR = int(config["embed_color"], 16)
 STATUS_CHANNEL_ID = config.get("status_channel_id")
 
-bot = commands.Bot(command_prefix="!", intents=discord.Intents.default())
+intents = discord.Intents.default()
+intents.message_content = True
+bot = commands.Bot(command_prefix="!", intents=intents)
 status_message = None
 
 
