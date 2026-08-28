@@ -111,7 +111,7 @@ async def update_status():
 @bot.event
 async def on_ready():
     logging.info(f"Logged in as {bot.user}")
-    if STATUS_CHANNEL_ID:
+    if STATUS_CHANNEL_ID and not update_status.is_running():
         update_status.start()
 
 
