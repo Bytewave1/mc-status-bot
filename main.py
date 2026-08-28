@@ -99,10 +99,13 @@ async def update_status():
         try:
             await status_message.edit(embed=embed)
             return
-        except discord.NotFound:
+        except (discord.NotFound, discord.HTTPException):
             status_message = None
 
-    status_message = await channel.send(embed=embed)
+    try:
+        status_message = await channel.send(embed=embed)
+    except discord.HTTPException:
+        logging.error("Failed to send status message")
 
 
 @bot.event
