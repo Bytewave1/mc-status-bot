@@ -20,9 +20,9 @@ if config.get("update_interval", 0) <= 0:
 
 TOKEN = config["token"]
 SERVER_IP = config["server_ip"]
-SERVER_PORT = config["server_port"]
+SERVER_PORT = config.get("server_port", 25565)
 UPDATE_INTERVAL = config["update_interval"]
-EMBED_COLOR = int(config["embed_color"], 16)
+EMBED_COLOR = int(config.get("embed_color", "2f3136"), 16)
 STATUS_CHANNEL_ID = config.get("status_channel_id")
 
 intents = discord.Intents.default()
