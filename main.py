@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands, tasks
 from mcstatus import JavaServer
+import asyncio
 import json
 import logging
 
@@ -81,7 +82,7 @@ async def update_status():
     if not channel:
         return
 
-    data = query_server()
+    data = await asyncio.to_thread(query_server)
     embed = build_embed(data)
 
     if data["online"]:
@@ -113,7 +114,7 @@ async def on_ready():
 
 @bot.command(name="status")
 async def cmd_status(ctx):
-    data = query_server()
+    data = await asyncio.to_thread(query_server)
     embed = build_embed(data)
     await ctx.send(embed=embed)
 
